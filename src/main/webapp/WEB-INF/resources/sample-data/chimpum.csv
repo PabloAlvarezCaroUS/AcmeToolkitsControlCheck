@@ -1,4 +1,5 @@
 key,title,pattern,creation-moment,period,budget,link
+chimpum-00,NullPlaceholder,ZAZ-999-Z,2000/01/01 00:01,2001/01/01 00:02,EUR 1.00,null
 chimpum-01,El primer chimpum,ABC-321-X,2022/05/20 15:02,2022/07/28 15:02,EUR 100.00,null
 chimpum-02,El segundo chimpum,CBA-432-Y,2022/05/20 15:05,2022/07/26 15:08,EUR 150.00,https://www.chimpum2.es
 chimpum-03,El tercer chimpum,KEK-529-J,2022/05/20 15:09,2022/07/29 13:01,EUR 180.00,https://www.chimpum3.es

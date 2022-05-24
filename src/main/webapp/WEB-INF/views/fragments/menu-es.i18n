@@ -41,6 +41,7 @@ master.menu.administrator.create-announcement = Crear anuncio
 # master.menu.patron ##########################################################
 
 master.menu.patron = Mecenas
+master.menu.patron.chimpum = Chimpums
 master.menu.patron.patronages = Mecenazgo
 master.menu.patron.dashboard = Panel de indicadores
 master.menu.patron.patronages = Mecenazgos

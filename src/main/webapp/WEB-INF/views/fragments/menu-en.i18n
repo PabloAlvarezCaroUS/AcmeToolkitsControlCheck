@@ -41,6 +41,7 @@ master.menu.administrator.create-announcement = Create announcement
 # master.menu.patron ##########################################################
 
 master.menu.patron = Patron
+master.menu.patron.chimpum = Chimpums
 master.menu.patron.patronages = Patronages
 master.menu.patron.dashboard = Dashboard
 
