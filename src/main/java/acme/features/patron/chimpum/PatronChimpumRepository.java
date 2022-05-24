@@ -14,5 +14,7 @@ public interface PatronChimpumRepository extends AbstractRepository {
 	@Query("select chimpum from Chimpum chimpum")
 	Collection<Chimpum> findAllChimpums();
 	
+	@Query("select chimpum from Chimpum chimpum where chimpum.id = :id")
+	Chimpum findChimpumById(int id);
 	
 }

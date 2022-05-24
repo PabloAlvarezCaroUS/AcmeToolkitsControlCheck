@@ -49,6 +49,7 @@ public class Chimpum extends AbstractEntity {
 
 	@Column(unique = true)
 	@Pattern(regexp = "^[A-Z]{3}-[0-9]{3}(-[A-Z])?$")
+	@NotNull
 	protected String			pattern;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -56,8 +57,15 @@ public class Chimpum extends AbstractEntity {
 	@NotNull
 	protected Date				creationMoment;
 	
-	//no sé como es exactamente
-	protected Date				period;
+	//period: at least starts one month after creating and lasts for one week
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
+	protected Date				startDate;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
+	protected Date				finishDate;
 	
 	@Valid
 	@NotNull
@@ -70,7 +78,11 @@ public class Chimpum extends AbstractEntity {
 	// Derived attributes -----------------------------------------------------
 	
 	public String getCode() {
-		return this.pattern + "-yy/mm/dd";
+		String date = String.valueOf(this.creationMoment);
+		//valor en string: 2022-08-15 12:03
+		String[] splitDate = date.split(" ");
+		String yearMonthDayDate = splitDate[0];
+		return this.pattern + "-" + yearMonthDayDate;
 	}
 
 	// Relationships ----------------------------------------------------------
