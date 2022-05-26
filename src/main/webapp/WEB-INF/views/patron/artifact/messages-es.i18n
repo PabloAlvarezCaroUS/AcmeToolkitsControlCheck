@@ -1,0 +1,12 @@
+patron.artifact.form.label.name = Nombre
+patron.artifact.form.label.code = Código
+patron.artifact.form.label.technology = Tecnología
+patron.artifact.form.label.description = Descripción
+patron.artifact.form.label.retailprice = Precio
+patron.artifact.form.label.type = Tipo
+patron.artifact.form.label.link = Enlace
+
+patron.artifact.list.label.quantity = Cantidad
+patron.artifact.list.label.name = Nombre
+patron.artifact.list.label.retailPrice = Precio
+patron.artifact.list.label.artifactType = Tipo

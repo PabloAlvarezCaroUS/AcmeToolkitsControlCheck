@@ -3,6 +3,7 @@ patron.chimpum.list.label.creationMoment = Momento de creación
 patron.chimpum.list.label.budget = Precio
 
 patron.chimpum.list.button.create = Crear
+patron.chimpum.form.button.create = Crear
 
 patron.chimpum.form.label.title = Título
 patron.chimpum.form.label.code = Código
@@ -11,5 +12,12 @@ patron.chimpum.form.label.startDate = Fecha de inicio del periodo
 patron.chimpum.form.label.finishDate = Fecha de fin del periodo
 patron.chimpum.form.label.budget = Precio
 patron.chimpum.form.label.link = Link
+patron.chimpum.form.label.pattern = Patrón
 
 patron.chimpum.form.button.COMPONENT = Ver los COMPONENTS del chimpum
+
+patron.chimpum.form.error.startDate = El periodo de tiempo debe empezar al menos un mes después de su creación
+patron.chimpum.form.error.finishDate = El periodo de tiempo debe durar al menos una semana
+
+patron.chimpum.form.error.negative-budget = El precio no puede ser negativo
+patron.chimpum.form.error.nonexistent-currency = Esta moneda no existe en nuestro sistema
