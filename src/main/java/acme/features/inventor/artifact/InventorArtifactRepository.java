@@ -1,12 +1,14 @@
 package acme.features.inventor.artifact;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.entities.artifacts.Artifact;
 import acme.entities.artifacts.Quantity;
+import acme.entities.chimpum.Chimpum;
 import acme.framework.repositories.AbstractRepository;
 import acme.roles.Inventor;
 
@@ -51,4 +53,10 @@ public interface InventorArtifactRepository extends AbstractRepository{
 	
 	@Query("select config.weakSpamTreshold from ConfigData config")
 	int findWeakSpamTreshold();
+	
+	@Query("SELECT chimpum FROM Chimpum chimpum")
+	List<Chimpum> findAllChimpums();
+	
+	@Query("SELECT c FROM Chimpum c WHERE c.pattern = :pattern")
+	Chimpum findChimpumByPattern(String pattern);
 }

@@ -1,10 +1,13 @@
 package acme.features.inventor.artifact;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.artifacts.Artifact;
 import acme.entities.artifacts.ArtifactType;
+import acme.entities.chimpum.Chimpum;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
@@ -38,8 +41,26 @@ public class InventorArtifactCreateService implements AbstractCreateService<Inve
 		assert errors != null;
 
 		String type;
+		ArtifactType artifactType;
+		
 		type = request.getModel().getString("type").toUpperCase();
-		entity.setArtifactType(ArtifactType.valueOf(type));
+		
+		artifactType = ArtifactType.valueOf(type);
+		
+		if (artifactType == ArtifactType.COMPONENT) {
+			String chimpumPattern;
+			Chimpum chimpum;
+			chimpumPattern = (String) request.getModel().getAttribute("chimpum");
+			if (chimpumPattern != null) {
+				chimpum = this.repository.findChimpumByPattern(chimpumPattern);
+				entity.setChimpum(chimpum);
+			} else {
+				entity.setChimpum(null);
+			}
+		}
+		
+		entity.setArtifactType(artifactType);
+		
 		request.bind(entity, errors, "name", "code", "technology" , "description" , "retailPrice", "link");
 		
 	}
@@ -51,10 +72,20 @@ public class InventorArtifactCreateService implements AbstractCreateService<Inve
 		assert model != null;
 		
 		String type;
+		List<Chimpum> chimpums;
+		boolean isComponent;
 		
 		type = request.getModel().getString("type").toUpperCase();
 		entity.setArtifactType(ArtifactType.valueOf(type));
+		
+		isComponent = type.contains("COMPONENT");
+		
+		chimpums = this.repository.findAllChimpums();
+		
 		model.setAttribute("type", type);
+		model.setAttribute("chimpums", chimpums);
+		model.setAttribute("isComponent", isComponent);
+		
 		request.unbind(entity, model,"name", "code", "technology" , "description" , "retailPrice", "published", "link");
 	
 		

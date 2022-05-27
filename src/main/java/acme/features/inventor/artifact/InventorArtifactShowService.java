@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.artifacts.Artifact;
 import acme.entities.artifacts.ArtifactType;
+import acme.entities.chimpum.Chimpum;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractShowService;
@@ -58,14 +59,39 @@ public class InventorArtifactShowService implements AbstractShowService<Inventor
 		assert entity != null;
 		assert model != null;
 		
-		request.unbind(entity, model, "name", "code", "technology", "description", "retailPrice", "artifactType", "link");
 		List<String> types;
+		String chimpumCode;
+		String chimpumTitle;
+		boolean hasChimpum;
+		List<Chimpum> chimpums;
+		
+		request.unbind(entity, model, "name", "code", "technology", "description", "retailPrice", "artifactType", "link");
+		
 		types = new ArrayList<String>();
 		for(final ArtifactType type:ArtifactType.values()) {
 			types.add(type.toString());
 		}
+		
+		hasChimpum = (entity.getChimpum() != null);
+		chimpums = this.repository.findAllChimpums();
+		
+		model.setAttribute("chimpums", chimpums);
+		model.setAttribute("hasChimpum", hasChimpum);
+		
+		if (hasChimpum) {
+			chimpumCode = entity.getChimpum().getCode();
+			chimpumTitle = entity.getChimpum().getTitle();
+			model.setAttribute("chimpum.code", chimpumCode);
+			model.setAttribute("chimpum.title", chimpumTitle);
+			model.setAttribute("chimpum", entity.getChimpum());
+		}
+		
 		model.setAttribute("types", types);
 		model.setAttribute("published", entity.isPublished());
+		model.setAttribute("isComponent", entity.getArtifactType().equals(ArtifactType.COMPONENT));
+
+
+	
 	}
 	
 }
