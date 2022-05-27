@@ -15,9 +15,11 @@
 			<acme:input-textbox code="patron.chimpum.form.label.pattern" path="pattern" placeholder="ABC-123-A"/>
 			<acme:submit code="patron.chimpum.form.button.create" action="/patron/chimpum/create"/>
 		</jstl:when>
-		<jstl:when test="${command == 'show'}">
-			<acme:input-textbox code="patron.chimpum.form.label.code" path="code"/>
-			<acme:input-moment code="patron.chimpum.form.label.creationMoment" path="creationMoment"/>
+		<jstl:when test="${acme:anyOf(command, 'update, show, delete')}">
+			<acme:input-textbox code="patron.chimpum.form.label.code" path="code" readonly="true"/>
+			<acme:input-moment code="patron.chimpum.form.label.creationMoment" path="creationMoment" readonly="true"/>
+			<acme:submit code="patron.chimpum.form.button.update" action="/patron/chimpum/update"/>
+			<acme:submit code="patron.chimpum.form.button.delete" action="/patron/chimpum/delete"/>
 			<acme:button code="patron.chimpum.form.button.COMPONENT" action="/patron/artifact/list?chimpumId=${id}"/>
 		</jstl:when>
 	</jstl:choose>

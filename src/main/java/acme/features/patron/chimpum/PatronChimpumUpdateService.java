@@ -1,7 +1,6 @@
 package acme.features.patron.chimpum;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +10,18 @@ import acme.entities.chimpum.Chimpum;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
-import acme.framework.services.AbstractCreateService;
+import acme.framework.services.AbstractUpdateService;
 import acme.roles.Patron;
 
 @Service
-public class PatronChimpumCreateService implements AbstractCreateService<Patron, Chimpum> {
+public class PatronChimpumUpdateService implements AbstractUpdateService<Patron, Chimpum> {
 
 	// Internal state ---------------------------------------------------------
 	
 	@Autowired
 	protected PatronChimpumRepository repository;
 		
-	// AbstractCreateService<Patron, Chimpum> interface ---------------------
+	// AbstractUpdateService<Patron, Chimpum> interface ---------------------
 	
 	@Override
 	public boolean authorise(final Request<Chimpum> request) {
@@ -37,7 +36,7 @@ public class PatronChimpumCreateService implements AbstractCreateService<Patron,
 		assert entity != null;
 		assert errors != null;
 		
-		request.bind(entity, errors, "title", "pattern", "startDate", "finishDate", "budget", "link");
+		request.bind(entity, errors, "title", "startDate", "finishDate", "budget", "link");
 	}
 
 	@Override
@@ -46,19 +45,18 @@ public class PatronChimpumCreateService implements AbstractCreateService<Patron,
 		assert entity != null;
 		assert model != null;
 		
-		request.unbind(entity, model, "title", "pattern", "startDate", "finishDate", "budget", "link");
+		request.unbind(entity, model, "title", "startDate", "finishDate", "budget", "link", "code", "creationMoment");
 	}
 
 	@Override
-	public Chimpum instantiate(final Request<Chimpum> request) {
+	public Chimpum findOne(final Request<Chimpum> request) {
 		assert request != null;
 		
 		Chimpum result;
-		Date creationMoment;
+		int id;
 		
-		result = new Chimpum();
-		creationMoment = new Date(System.currentTimeMillis() - 1);
-		result.setCreationMoment(creationMoment);
+		id = request.getModel().getInteger("id");
+		result = this.repository.findChimpumById(id);
 		
 		return result;
 	}
@@ -104,13 +102,14 @@ public class PatronChimpumCreateService implements AbstractCreateService<Patron,
 				if(acceptedCurrency)
 					break;
 			}
+			
 			errors.state(request, entity.getBudget().getAmount() > 0 , "budget", "patron.chimpum.form.error.negative-budget");
 			errors.state(request,acceptedCurrency, "budget", "patron.chimpum.form.error.nonexistent-currency");
 		}
 	}
 
 	@Override
-	public void create(final Request<Chimpum> request, final Chimpum entity) {
+	public void update(final Request<Chimpum> request, final Chimpum entity) {
 		assert request != null;
 		assert entity != null;
 		

@@ -4,6 +4,8 @@ patron.chimpum.list.label.budget = Budget
 
 patron.chimpum.list.button.create = Create
 patron.chimpum.form.button.create = Create
+patron.chimpum.form.button.update = Update
+patron.chimpum.form.button.delete = Delete
 
 patron.chimpum.form.label.title = Title
 patron.chimpum.form.label.code = Code
