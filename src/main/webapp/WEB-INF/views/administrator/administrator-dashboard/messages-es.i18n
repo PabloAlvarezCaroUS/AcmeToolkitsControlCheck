@@ -4,7 +4,7 @@ administrator.administrator-dashboard.form.title.component = Estadísticas sobre
 administrator.administrator-dashboard.form.title.tool = Estadísticas sobre herramientas
 administrator.administrator-dashboard.form.title.patronage = Estadísticas sobre mecenazgos
 administrator.administrator-dashboard.form.title.chimpum = Estadísticas sobre chimpums
-administrator.administrator-dashboard.form.title.chimpumratio = Ratio de artefactos con chimpums
+administrator.administrator-dashboard.form.title.chimpumratio = Ratio de artefactos con chimpums (%)
 
 administrator.administrator-dashboard.form.title.total-components = Número total de componentes
 administrator.administrator-dashboard.form.title.total-tools = Número total de herramientas

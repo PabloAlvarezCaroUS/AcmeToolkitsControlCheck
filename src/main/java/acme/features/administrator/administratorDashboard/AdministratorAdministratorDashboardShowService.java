@@ -58,7 +58,7 @@ public class AdministratorAdministratorDashboardShowService implements AbstractS
 		final Map<Status,Double>	minimumBudgetOfPatronagesGroupedByStatus;
 		final Map<Status,Double>	maximumBudgetOfPatronagesGroupedByStatus;
 		
-		int ratioOfArtifactsWithChimpums;
+		double ratioOfArtifactsWithChimpums;
 		Map<String, Double> averageBudgetOfChimpumsGroupedByCurrency;
 		Map<String, Double> deviationBudgetOfChimpumsGroupedByCurrency;
 		Map<String, Double> minimumBudgetOfChimpumsGroupedByCurrency;
@@ -69,7 +69,14 @@ public class AdministratorAdministratorDashboardShowService implements AbstractS
 		totalNumberOfTools = this.repository.totalNumberOfTools();
 		totalNumberOfPatronagesGroupedByStatus = this.totalNumberOfPatronagesGroupedByStatusMap(
 			this.repository.totalNumberOfPatronagesGroupedByStatus());
-		ratioOfArtifactsWithChimpums = this.repository.ratioOfArtifactsWithChimpums();
+		
+		if (totalNumberOfComponents > 0) {
+			ratioOfArtifactsWithChimpums = 100 * ((double) this.repository.ratioOfArtifactsWithChimpums() /
+					(double) this.repository.totalNumberOfComponents());
+		} else {
+			ratioOfArtifactsWithChimpums = 0.0;
+		}
+		
 		
 		//Components methods
 		
