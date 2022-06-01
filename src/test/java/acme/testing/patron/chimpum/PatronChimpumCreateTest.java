@@ -32,7 +32,7 @@ public class PatronChimpumCreateTest extends TestHarness {
 
 		super.clickOnMenu("Patron", "Chimpums");
 		super.checkListingExists();
-		super.sortListing(1, "desc");
+		super.sortListing(0, "asc");
 		super.checkColumnHasValue(recordIndex, 0, title);
 		super.checkColumnHasValue(recordIndex, 2, budget);
 
