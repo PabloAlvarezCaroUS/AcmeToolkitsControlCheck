@@ -12,6 +12,7 @@ import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractUpdateService;
 import acme.roles.Patron;
+import features.SpamDetector;
 
 @Service
 public class PatronChimpumUpdateService implements AbstractUpdateService<Patron, Chimpum> {
@@ -66,6 +67,24 @@ public class PatronChimpumUpdateService implements AbstractUpdateService<Patron,
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		
+		SpamDetector spamDetector;
+		String strongSpamTerms;
+		String weakSpamTerms;
+		int strongSpamThreshold;
+		int weakSpamThreshold;
+		
+		spamDetector = new SpamDetector();
+		strongSpamTerms = this.repository.findStrongSpamTerms();
+		weakSpamTerms = this.repository.findWeakSpamTerms();
+		strongSpamThreshold = this.repository.findStrongSpamTreshold();
+		weakSpamThreshold = this.repository.findWeakSpamTreshold();
+		
+		if(!errors.hasErrors("title")) {
+			errors.state(request, !spamDetector.containsSpam(weakSpamTerms.split(","), weakSpamThreshold, entity.getTitle())
+				&& !spamDetector.containsSpam(strongSpamTerms.split(","), strongSpamThreshold, entity.getTitle()),
+				"title", "patron.chimpum.form.error.spam");
+		}
 		
 		if(!errors.hasErrors("startDate")) {
 			Calendar calendar;

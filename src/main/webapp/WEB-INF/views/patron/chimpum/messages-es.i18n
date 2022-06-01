@@ -23,3 +23,4 @@ patron.chimpum.form.error.finishDate = El periodo de tiempo debe durar al menos 
 
 patron.chimpum.form.error.negative-budget = El precio no puede ser negativo
 patron.chimpum.form.error.nonexistent-currency = Esta moneda no existe en nuestro sistema
+patron.chimpum.form.error.spam = Este texto contiene términos de spam

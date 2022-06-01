@@ -25,4 +25,16 @@ public interface PatronChimpumRepository extends AbstractRepository {
 	@Query("SELECT artifact FROM Artifact artifact WHERE artifact.chimpum.id = :id")
 	List<Artifact> findArtifactsByChimpumId(int id);
 	
+	@Query("select config.strongSpamTerms from ConfigData config")
+	String findStrongSpamTerms();
+	
+	@Query("select config.weakSpamTerms from ConfigData config")
+	String findWeakSpamTerms();
+	
+	@Query("select config.strongSpamTreshold from ConfigData config")
+	int findStrongSpamTreshold();
+	
+	@Query("select config.weakSpamTreshold from ConfigData config")
+	int findWeakSpamTreshold();
+	
 }
