@@ -76,13 +76,14 @@
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.patron" access="hasRole('Patron')">
-			<acme:menu-suboption code="master.menu.patron.chimpum" action="/patron/chimpum/list"/>
 			<acme:menu-suboption code="master.menu.patron.patronages" action="/patron/patronage/list"/>
 			<acme:menu-suboption code="master.menu.patron.dashboard" action="/patron/patron-dashboard/show"/>
 		</acme:menu-option>
   
 		<acme:menu-option code="master.menu.inventor" access="hasRole('Inventor')">
-		  <acme:menu-suboption code="master.menu.inventor.patronages" action="/inventor/patronage/list"/>
+			<acme:menu-suboption code="master.menu.inventor.chimpum" action="/inventor/chimpum/list"/>
+			<acme:menu-separator/>	
+		 	<acme:menu-suboption code="master.menu.inventor.patronages" action="/inventor/patronage/list"/>
 			<acme:menu-separator/>		 	
 		 	<acme:menu-suboption code="master.menu.inventor.components-link" action="/inventor/artifact/list-mine?type=component"/>
 			<acme:menu-suboption code="master.menu.inventor.tools-link" action="/inventor/artifact/list-mine?type=tool"/>

@@ -1,0 +1,26 @@
+inventor.chimpum.list.label.title = Title
+inventor.chimpum.list.label.creationMoment = Creation Moment
+inventor.chimpum.list.label.budget = Budget
+
+inventor.chimpum.list.button.create = Create
+inventor.chimpum.form.button.create = Create
+inventor.chimpum.form.button.update = Update
+inventor.chimpum.form.button.delete = Delete
+
+inventor.chimpum.form.label.title = Title
+inventor.chimpum.form.label.code = Code
+inventor.chimpum.form.label.creationMoment = Creation Moment
+inventor.chimpum.form.label.startDate = Period start date
+inventor.chimpum.form.label.finishDate = Period finish date
+inventor.chimpum.form.label.budget = Budget
+inventor.chimpum.form.label.link = Link
+inventor.chimpum.form.label.pattern = Pattern
+
+inventor.chimpum.form.button.COMPONENT = See the chimpum's COMPONENTS
+
+inventor.chimpum.form.error.startDate = The time period must start at least one month after the patronage is created
+inventor.chimpum.form.error.finishDate = The time period must be at least one week long
+
+inventor.chimpum.form.error.negative-budget = The budget can't be negative
+inventor.chimpum.form.error.nonexistent-currency = This currency does not exist in our system
+inventor.chimpum.form.error.spam = This text contains spam terms

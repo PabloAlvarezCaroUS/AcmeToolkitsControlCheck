@@ -1,4 +1,4 @@
-package acme.features.patron.chimpum;
+package acme.features.inventor.chimpum;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -12,19 +12,19 @@ import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractCreateService;
-import acme.roles.Patron;
+import acme.roles.Inventor;
 
 import features.SpamDetector;
 
 @Service
-public class PatronChimpumCreateService implements AbstractCreateService<Patron, Chimpum> {
+public class InventorChimpumCreateService implements AbstractCreateService<Inventor, Chimpum> {
 
 	// Internal state ---------------------------------------------------------
 	
 	@Autowired
-	protected PatronChimpumRepository repository;
+	protected InventorChimpumRepository repository;
 		
-	// AbstractCreateService<Patron, Chimpum> interface ---------------------
+	// AbstractCreateService<Inventor, Chimpum> interface ---------------------
 	
 	@Override
 	public boolean authorise(final Request<Chimpum> request) {
@@ -86,7 +86,7 @@ public class PatronChimpumCreateService implements AbstractCreateService<Patron,
 		if(!errors.hasErrors("title")) {
 			errors.state(request, !spamDetector.containsSpam(weakSpamTerms.split(","), weakSpamThreshold, entity.getTitle())
 				&& !spamDetector.containsSpam(strongSpamTerms.split(","), strongSpamThreshold, entity.getTitle()),
-				"title", "patron.chimpum.form.error.spam");
+				"title", "inventor.chimpum.form.error.spam");
 		}
 		
 		if(!errors.hasErrors("startDate")) {
@@ -96,7 +96,7 @@ public class PatronChimpumCreateService implements AbstractCreateService<Patron,
 			calendar.add(Calendar.MONTH, 1);
 			calendar.add(Calendar.DAY_OF_MONTH, -1);
 			
-			errors.state(request, entity.getStartDate().after(calendar.getTime()), "startDate", "patron.chimpum.form.error.startDate");
+			errors.state(request, entity.getStartDate().after(calendar.getTime()), "startDate", "inventor.chimpum.form.error.startDate");
 		}
 		
 		if(!errors.hasErrors("finishDate")) {
@@ -111,7 +111,7 @@ public class PatronChimpumCreateService implements AbstractCreateService<Patron,
 				errorState = entity.getFinishDate().after(calendar.getTime());
 			}
 			
-			errors.state(request, errorState, "finishDate", "patron.chimpum.form.error.finishDate");
+			errors.state(request, errorState, "finishDate", "inventor.chimpum.form.error.finishDate");
 		}
 		
 		if (!errors.hasErrors("budget")) {
@@ -124,8 +124,8 @@ public class PatronChimpumCreateService implements AbstractCreateService<Patron,
 				if(acceptedCurrency)
 					break;
 			}
-			errors.state(request, entity.getBudget().getAmount() > 0 , "budget", "patron.chimpum.form.error.negative-budget");
-			errors.state(request,acceptedCurrency, "budget", "patron.chimpum.form.error.nonexistent-currency");
+			errors.state(request, entity.getBudget().getAmount() > 0 , "budget", "inventor.chimpum.form.error.negative-budget");
+			errors.state(request,acceptedCurrency, "budget", "inventor.chimpum.form.error.nonexistent-currency");
 		}
 	}
 
