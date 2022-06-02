@@ -24,3 +24,4 @@ inventor.chimpum.form.error.finishDate = The time period must be at least one we
 inventor.chimpum.form.error.negative-budget = The budget can't be negative
 inventor.chimpum.form.error.nonexistent-currency = This currency does not exist in our system
 inventor.chimpum.form.error.spam = This text contains spam terms
+inventor.chimpum.form.error.duplicated = This pattern is duplicated

@@ -7,6 +7,7 @@ import java.util.GregorianCalendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.artifacts.Artifact;
 import acme.entities.chimpum.Chimpum;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
@@ -87,6 +88,13 @@ public class InventorChimpumCreateService implements AbstractCreateService<Inven
 			errors.state(request, !spamDetector.containsSpam(weakSpamTerms.split(","), weakSpamThreshold, entity.getTitle())
 				&& !spamDetector.containsSpam(strongSpamTerms.split(","), strongSpamThreshold, entity.getTitle()),
 				"title", "inventor.chimpum.form.error.spam");
+		}
+		
+		if(!errors.hasErrors("pattern")) {
+			Chimpum exists;
+			
+			exists = this.repository.findChimpumByPattern(entity.getPattern());
+			errors.state(request, exists == null, "pattern", "inventor.chimpum.form.error.duplicated");
 		}
 		
 		if(!errors.hasErrors("startDate")) {
