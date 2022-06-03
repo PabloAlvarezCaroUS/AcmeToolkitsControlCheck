@@ -5,29 +5,29 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import acme.entities.chimpum.Chimpum;
+import acme.entities.lustar.Lustar;
 import acme.framework.controllers.AbstractController;
 import acme.roles.Inventor;
 
 @Controller
-public class InventorChimpumController extends AbstractController<Inventor, Chimpum>{
+public class InventorLustarController extends AbstractController<Inventor, Lustar>{
 	
 	// Internal state -------------------------------------------------------------------
 	
 	@Autowired
-	protected InventorChimpumListService listService;
+	protected InventorLustarListService listService;
 	
 	@Autowired
-	protected InventorChimpumShowService showService;
+	protected InventorLustarShowService showService;
 	
 	@Autowired
-	protected InventorChimpumCreateService createService;
+	protected InventorLustarCreateService createService;
 	
 	@Autowired
-	protected InventorChimpumUpdateService updateService;
+	protected InventorLustarUpdateService updateService;
 	
 	@Autowired
-	protected InventorChimpumDeleteService deleteService;
+	protected InventorLustarDeleteService deleteService;
 	
 	// Constructors ---------------------------------------------------------------------
 	

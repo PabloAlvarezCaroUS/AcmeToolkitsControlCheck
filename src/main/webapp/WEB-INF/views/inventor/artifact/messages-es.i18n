@@ -16,13 +16,15 @@ inventor.artifact.form.label.link = Enlace
 inventor.artifact.list.label.inventor = Inventor
 inventor.artifact.list.label.quantity = Cantidad
 
-
+inventor.artifact.message.lustar = Lustar
+inventor.artifact.form.label.select.lustar = Lustar
+inventor.artifact.form.label.lustar.subject = Asunto
+inventor.artifact.form.label.lustar.code = Código
 
 inventor.artifact.form.button.update = Actualizar
 inventor.artifact.form.button.delete = Borrar
 inventor.artifact.form.button.publish = Publicar
 inventor.artifact.form.button.create = Crear 
-
 
 inventor.artifact.form.error.duplicated = Este codigo no está libre
 inventor.artifact.form.error.negative-retailPrice =  El precio debe ser positivo

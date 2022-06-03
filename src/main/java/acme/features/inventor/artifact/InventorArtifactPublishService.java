@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.artifacts.Artifact;
 import acme.entities.artifacts.ArtifactType;
-import acme.entities.chimpum.Chimpum;
+import acme.entities.lustar.Lustar;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
@@ -52,14 +52,14 @@ public class InventorArtifactPublishService implements AbstractUpdateService<Inv
 			artifactType = entity.getArtifactType();
 			
 			if (artifactType == ArtifactType.COMPONENT) {
-				String chimpumPattern;
-				Chimpum chimpum;
-				chimpumPattern = (String) request.getModel().getAttribute("chimpum");
-				if (chimpumPattern != null) {
-					chimpum = this.repository.findChimpumByPattern(chimpumPattern);
-					entity.setChimpum(chimpum);
+				String lustarPattern;
+				Lustar lustar;
+				lustarPattern = (String) request.getModel().getAttribute("lustar");
+				if (lustarPattern != null) {
+					lustar = this.repository.findLustarByPattern(lustarPattern);
+					entity.setLustar(lustar);
 				} else {
-					entity.setChimpum(null);
+					entity.setLustar(null);
 				}
 			}
 

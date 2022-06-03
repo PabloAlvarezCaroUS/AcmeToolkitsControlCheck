@@ -5,46 +5,46 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.chimpum.Chimpum;
+import acme.entities.lustar.Lustar;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractListService;
 import acme.roles.Inventor;
 
 @Service
-public class InventorChimpumListService implements AbstractListService<Inventor, Chimpum>{
+public class InventorLustarListService implements AbstractListService<Inventor, Lustar>{
 	
 	// Internal state -------------------------------------------------------------------
 	
 	@Autowired
-	protected InventorChimpumRepository repository;
+	protected InventorLustarRepository repository;
 	
 	// AbstractListService<Inventor, Patronage> interface ---------------------------------
 	
 	@Override
-	public boolean authorise(final Request<Chimpum> request) {
+	public boolean authorise(final Request<Lustar> request) {
 		assert request != null;
 		
 		return true;
 	}
 
 	@Override
-	public Collection<Chimpum> findMany(final Request<Chimpum> request) {
+	public Collection<Lustar> findMany(final Request<Lustar> request) {
 		assert request != null;
 		
-		Collection<Chimpum> result;
-		result = this.repository.findAllChimpums();
+		Collection<Lustar> result;
+		result = this.repository.findAllLustars();
 		
 		return result;
 	}
 
 	@Override
-	public void unbind(final Request<Chimpum> request, final Chimpum entity, final Model model) {
+	public void unbind(final Request<Lustar> request, final Lustar entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
 		
-		request.unbind(entity, model, "title", "creationMoment", "budget");
+		request.unbind(entity, model, "subject", "creationMoment", "income");
 	}
 
 }

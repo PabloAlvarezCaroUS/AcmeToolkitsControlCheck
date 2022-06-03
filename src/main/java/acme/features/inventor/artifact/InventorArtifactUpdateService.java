@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.artifacts.Artifact;
 import acme.entities.artifacts.ArtifactType;
-import acme.entities.chimpum.Chimpum;
+import acme.entities.lustar.Lustar;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
@@ -54,14 +54,14 @@ public class InventorArtifactUpdateService implements AbstractUpdateService<Inve
 		artifactType = entity.getArtifactType();
 		
 		if (artifactType == ArtifactType.COMPONENT) {
-			String chimpumPattern;
-			Chimpum chimpum;
-			chimpumPattern = (String) request.getModel().getAttribute("chimpum");
-			if (chimpumPattern != null) {
-				chimpum = this.repository.findChimpumByPattern(chimpumPattern);
-				entity.setChimpum(chimpum);
+			String lustarPattern;
+			Lustar lustar;
+			lustarPattern = (String) request.getModel().getAttribute("lustar");
+			if (lustarPattern != null) {
+				lustar = this.repository.findLustarByPattern(lustarPattern);
+				entity.setLustar(lustar);
 			} else {
-				entity.setChimpum(null);
+				entity.setLustar(null);
 			}
 		}
 
@@ -76,18 +76,18 @@ public class InventorArtifactUpdateService implements AbstractUpdateService<Inve
 		assert model != null;
 		
 		boolean isComponent;
-		List<Chimpum> chimpums;
+		List<Lustar> lustars;
 		
 		isComponent = entity.getArtifactType().equals(ArtifactType.COMPONENT);
-		chimpums = this.repository.findAllChimpums();
+		lustars = this.repository.findAllLustars();
 		
 		request.unbind(entity, model,"name", "code", "technology" , "description" , "retailPrice", "artifactType", "published", "link");
 
 		model.setAttribute("isComponent", isComponent);
-		model.setAttribute("chimpums", chimpums);
+		model.setAttribute("lustars", lustars);
 	
-		if (entity.getChimpum() != null) {
-			model.setAttribute("chimpum", entity.getChimpum());
+		if (entity.getLustar() != null) {
+			model.setAttribute("lustar", entity.getLustar());
 		}
 		
 	}

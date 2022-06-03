@@ -10,8 +10,9 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.entities.chimpum;
+package acme.entities.lustar;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -35,7 +36,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Chimpum extends AbstractEntity {
+public class Lustar extends AbstractEntity {
 
 	// Serialisation identifier -----------------------------------------------
 
@@ -45,10 +46,14 @@ public class Chimpum extends AbstractEntity {
 	
 	@NotBlank
 	@Length(max = 100)
-	protected String 			title;
+	protected String 			subject;
+	
+	@NotBlank
+	@Length(max = 255)
+	protected String 			summary;
 
 	@Column(unique = true)
-	@Pattern(regexp = "^[A-Z]{3}-[0-9]{3}(-[A-Z])?$")
+	@Pattern(regexp = "\\d{2,4}$")
 	@NotNull
 	protected String			pattern;
 	
@@ -69,20 +74,23 @@ public class Chimpum extends AbstractEntity {
 	
 	@Valid
 	@NotNull
-	protected Money				budget;
+	protected Money				income;
 	
 	@URL
-	protected String			link;
+	protected String			moreInfo;
 	
 
 	// Derived attributes -----------------------------------------------------
 	
 	public String getCode() {
-		String date = String.valueOf(this.creationMoment);
-		//valor en string: 2022-08-15 12:03
-		String[] splitDate = date.split(" ");
-		String yearMonthDayDate = splitDate[0];
-		return this.pattern + "-" + yearMonthDayDate;
+		final String format = "MM-dd-yy";
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+		String yearMonthDayDate = simpleDateFormat.format(this.creationMoment);
+		String[] dateSplit = yearMonthDayDate.split("-");
+		String year = dateSplit[2];
+		String month = dateSplit[0];
+		String day = dateSplit[1];
+		return year + "-" + month + day + this.pattern;
 	}
 
 	// Relationships ----------------------------------------------------------

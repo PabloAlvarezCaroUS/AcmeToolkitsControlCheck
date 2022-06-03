@@ -1,4 +1,4 @@
-package acme.testing.inventor.chimpum;
+package acme.testing.inventor.lustar;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -6,14 +6,14 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import acme.testing.TestHarness;
 
-public class InventorChimpumListTest extends TestHarness {
+public class InventorLustarListTest extends TestHarness {
 	
 	// Lifecycle management ---------------------------------------------------
 
 	// Test cases -------------------------------------------------------------
 	
 	@ParameterizedTest
-	@CsvFileSource(resources = "/inventor/chimpum/list.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/inventor/lustar/list.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void positive(final int recordIndex, final String title, final String pattern, final String creationMoment, final String startDate, final String finishDate, final String budget, final String link) {
 		super.signIn("inventor1", "inventor1");

@@ -16,7 +16,10 @@ inventor.artifact.form.label.link = Link
 inventor.artifact.list.label.inventor = Inventor
 inventor.artifact.list.label.quantity = Quantity
 
-
+inventor.artifact.message.lustar = Lustar
+inventor.artifact.form.label.select.lustar = Lustar
+inventor.artifact.form.label.lustar.subject = Subject
+inventor.artifact.form.label.lustar.code = Code
 
 inventor.artifact.form.button.update = Update
 inventor.artifact.form.button.delete = Delete

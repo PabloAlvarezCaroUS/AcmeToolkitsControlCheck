@@ -1,0 +1,4 @@
+key,subject,summary,pattern,creation-moment,start-date,finish-date,income,moreInfo
+lustar-01,El primer lustar,summary1,89,2022/05/20 15:02,2022/07/28 15:02,2022/08/15 12:03,EUR 100.00,null
+lustar-02,El segundo lustar,summary2,90,2022/05/20 15:05,2022/07/26 15:08,2022/08/13 13:02,EUR 150.00,https://www.lustar2.es
+lustar-03,El tercer lustar,summary3,91,2022/05/20 15:09,2022/07/29 13:01,2022/08/09 16:04,EUR 180.00,https://www.lustar3.es

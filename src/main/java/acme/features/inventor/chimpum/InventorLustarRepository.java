@@ -7,26 +7,26 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.entities.artifacts.Artifact;
-import acme.entities.chimpum.Chimpum;
+import acme.entities.lustar.Lustar;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
-public interface InventorChimpumRepository extends AbstractRepository {
+public interface InventorLustarRepository extends AbstractRepository {
 	
-	@Query("SELECT chimpum FROM Chimpum chimpum")
-	Collection<Chimpum> findAllChimpums();
+	@Query("SELECT l FROM Lustar l")
+	Collection<Lustar> findAllLustars();
 	
-	@Query("SELECT chimpum FROM Chimpum chimpum WHERE chimpum.id = :id")
-	Chimpum findChimpumById(int id);
+	@Query("SELECT l FROM Lustar l WHERE l.id = :id")
+	Lustar findLustarById(int id);
 	
-	@Query("SELECT chimpum FROM Chimpum chimpum WHERE chimpum.pattern = :pattern")
-	Chimpum findChimpumByPattern(String pattern);
+	@Query("SELECT l FROM Lustar l WHERE l.pattern = :pattern")
+	Lustar findLustarByPattern(String pattern);
 	
 	@Query("select cd.acceptedCurrencies from ConfigData cd")
 	String acceptedCurrencies();
 	
-	@Query("SELECT artifact FROM Artifact artifact WHERE artifact.chimpum.id = :id")
-	List<Artifact> findArtifactsByChimpumId(int id);
+	@Query("SELECT artifact FROM Artifact artifact WHERE artifact.lustar.id = :id")
+	List<Artifact> findArtifactsByLustarId(int id);
 	
 	@Query("select config.strongSpamTerms from ConfigData config")
 	String findStrongSpamTerms();

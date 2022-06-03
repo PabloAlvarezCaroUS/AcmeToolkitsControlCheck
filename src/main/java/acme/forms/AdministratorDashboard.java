@@ -54,12 +54,12 @@ public class AdministratorDashboard {
 	Map<Status,Double>						maximumBudgetOfPatronagesGroupedByStatus;
 	
 	
-	double 									ratioOfArtifactsWithChimpums;
+	double 									ratioOfArtifactsWithLustars;
 	
-	Map<String, Double> averageBudgetOfChimpumsGroupedByCurrency;
-	Map<String, Double> deviationBudgetOfChimpumsGroupedByCurrency;
-	Map<String, Double> minimumBudgetOfChimpumsGroupedByCurrency;
-	Map<String, Double> maximumBudgetOfChimpumsGroupedByCurrency;
+	Map<String, Double> averageBudgetOfLustarsGroupedByCurrency;
+	Map<String, Double> deviationBudgetOfLustarsGroupedByCurrency;
+	Map<String, Double> minimumBudgetOfLustarsGroupedByCurrency;
+	Map<String, Double> maximumBudgetOfLustarsGroupedByCurrency;
 	
 
 	// Derived attributes -----------------------------------------------------

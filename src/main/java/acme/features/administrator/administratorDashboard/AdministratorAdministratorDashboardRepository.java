@@ -61,22 +61,22 @@ public interface AdministratorAdministratorDashboardRepository extends AbstractR
 	@Query("select p.status, max(p.budget.amount) from Patronage p group by p.status")
 	List<String> maximumBudgetOfPatronagesGroupedByStatus();
 	
-	//Methods for CHIMPUMs --------------------------------------------
+	//Methods for LUSTARs --------------------------------------------
 	
-	@Query("SELECT count(a) FROM Artifact a WHERE a.chimpum != null")
-	int ratioOfArtifactsWithChimpums();
+	@Query("SELECT count(a) FROM Artifact a WHERE a.lustar != null")
+	int ratioOfArtifactsWithLustars();
 	
-	@Query("select c.budget.currency, avg(c.budget.amount) from Chimpum c group by c.budget.currency")
-	List<String> averageBudgetOfChimpumsGroupedByCurrency();
+	@Query("select l.income.currency, avg(l.income.amount) from Lustar l group by l.income.currency")
+	List<String> averageBudgetOfLustarsGroupedByCurrency();
 	
-	@Query("select c.budget.currency, stddev(c.budget.amount) from Chimpum c group by c.budget.currency")
-	List<String> deviationBudgetOfChimpumsGroupedByCurrency();
+	@Query("select l.income.currency, stddev(l.income.amount) from Lustar l group by l.income.currency")
+	List<String> deviationBudgetOfLustarsGroupedByCurrency();
 	
-	@Query("select c.budget.currency, min(c.budget.amount) from Chimpum c group by c.budget.currency")
-	List<String> minimumBudgetOfChimpumsGroupedByCurrency();
+	@Query("select l.income.currency, min(l.income.amount) from Lustar l group by l.income.currency")
+	List<String> minimumBudgetOfLustarsGroupedByCurrency();
 	
-	@Query("select c.budget.currency, max(c.budget.amount) from Chimpum c group by c.budget.currency")
-	List<String> maximumBudgetOfChimpumsGroupedByCurrency();
+	@Query("select l.income.currency, max(l.income.amount) from Lustar l group by l.income.currency")
+	List<String> maximumBudgetOfLustarsGroupedByCurrency();
 	
 	// Others -------------------------------
 	
