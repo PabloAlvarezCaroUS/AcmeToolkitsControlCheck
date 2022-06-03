@@ -1,4 +1,4 @@
-package acme.testing.patron.chimpum;
+package acme.testing.inventor.chimpum;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -6,19 +6,19 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import acme.testing.TestHarness;
 
-public class PatronChimpumCreateTest extends TestHarness {
+public class InventorChimpumCreateTest extends TestHarness {
 	
 	// Lifecycle management ---------------------------------------------------
 
 	// Test cases -------------------------------------------------------------
 	
 	@ParameterizedTest
-	@CsvFileSource(resources = "/patron/chimpum/create.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/inventor/chimpum/create.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void positive(final int recordIndex, final String title, final String pattern, final String startDate, final String finishDate, final String budget, final String link) {
-		super.signIn("patron2", "patron2");
+		super.signIn("inventor2", "inventor2");
 		
-		super.clickOnMenu("Patron", "Chimpums");
+		super.clickOnMenu("Inventor", "Chimpums");
 		super.checkListingExists();
 		
 		super.clickOnButton("Create");
@@ -30,7 +30,7 @@ public class PatronChimpumCreateTest extends TestHarness {
 		super.fillInputBoxIn("link", link);
 		super.clickOnSubmit("Create");
 
-		super.clickOnMenu("Patron", "Chimpums");
+		super.clickOnMenu("Inventor", "Chimpums");
 		super.checkListingExists();
 		super.sortListing(0, "asc");
 		super.checkColumnHasValue(recordIndex, 0, title);
@@ -48,12 +48,12 @@ public class PatronChimpumCreateTest extends TestHarness {
 	}
 	
 	@ParameterizedTest
-	@CsvFileSource(resources = "/patron/chimpum/create-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/inventor/chimpum/create-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(20)
 	public void negative(final int recordIndex, final String title, final String pattern, final String startDate, final String finishDate, final String budget, final String link) {
-		super.signIn("patron2", "patron2");
+		super.signIn("inventor2", "inventor2");
 		
-		super.clickOnMenu("Patron", "Chimpums");
+		super.clickOnMenu("Inventor", "Chimpums");
 		super.checkListingExists();
 		
 		super.clickOnButton("Create");

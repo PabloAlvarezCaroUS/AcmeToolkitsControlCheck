@@ -1,4 +1,4 @@
-package acme.features.patron.chimpum;
+package acme.features.inventor.chimpum;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +8,15 @@ import acme.entities.chimpum.Chimpum;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractShowService;
-import acme.roles.Patron;
+import acme.roles.Inventor;
 
 @Service
-public class PatronChimpumShowService implements AbstractShowService<Patron, Chimpum>{
+public class InventorChimpumShowService implements AbstractShowService<Inventor, Chimpum>{
 
 	// Internal state -------------------------------------------------------------------
 	
 	@Autowired
-	protected PatronChimpumRepository repository;
+	protected InventorChimpumRepository repository;
 	
 	// AbstractListService<Patron, Patronage> interface ---------------------------------
 	

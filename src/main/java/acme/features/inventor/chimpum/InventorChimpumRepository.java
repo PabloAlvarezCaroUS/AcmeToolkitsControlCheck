@@ -1,4 +1,4 @@
-package acme.features.patron.chimpum;
+package acme.features.inventor.chimpum;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,13 +11,16 @@ import acme.entities.chimpum.Chimpum;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
-public interface PatronChimpumRepository extends AbstractRepository {
+public interface InventorChimpumRepository extends AbstractRepository {
 	
 	@Query("SELECT chimpum FROM Chimpum chimpum")
 	Collection<Chimpum> findAllChimpums();
 	
 	@Query("SELECT chimpum FROM Chimpum chimpum WHERE chimpum.id = :id")
 	Chimpum findChimpumById(int id);
+	
+	@Query("SELECT chimpum FROM Chimpum chimpum WHERE chimpum.pattern = :pattern")
+	Chimpum findChimpumByPattern(String pattern);
 	
 	@Query("select cd.acceptedCurrencies from ConfigData cd")
 	String acceptedCurrencies();

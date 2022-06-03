@@ -26,4 +26,10 @@ public interface AnyArtifactRepository extends AbstractRepository {
 	
 	@Query("SELECT q.artifact FROM Quantity q WHERE q.toolkit.id =:id and q.artifact.published=true")
 	Collection<Artifact> findToolsAndComponentsByToolkitId(int id);
+	
+	@Query("SELECT a FROM Artifact a WHERE a.chimpum.id = :id and a.published = true")
+	Collection<Artifact> findArtifactsByChimpumId(int id);
+	
+	@Query("SELECT inventor.id FROM Inventor inventor")
+	Collection<Integer> findAllInventorId();
 }

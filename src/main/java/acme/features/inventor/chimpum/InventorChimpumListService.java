@@ -1,4 +1,4 @@
-package acme.features.patron.chimpum;
+package acme.features.inventor.chimpum;
 
 import java.util.Collection;
 
@@ -9,17 +9,17 @@ import acme.entities.chimpum.Chimpum;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractListService;
-import acme.roles.Patron;
+import acme.roles.Inventor;
 
 @Service
-public class PatronChimpumListService implements AbstractListService<Patron, Chimpum>{
+public class InventorChimpumListService implements AbstractListService<Inventor, Chimpum>{
 	
 	// Internal state -------------------------------------------------------------------
 	
 	@Autowired
-	protected PatronChimpumRepository repository;
+	protected InventorChimpumRepository repository;
 	
-	// AbstractListService<Patron, Patronage> interface ---------------------------------
+	// AbstractListService<Inventor, Patronage> interface ---------------------------------
 	
 	@Override
 	public boolean authorise(final Request<Chimpum> request) {

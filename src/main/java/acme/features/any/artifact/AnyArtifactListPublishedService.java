@@ -33,14 +33,23 @@ public class AnyArtifactListPublishedService implements AbstractListService<Any,
 		assert request != null;
 		
 		Collection<Artifact> result;
-		final String type=request.getModel().getString("type");
-		if(type.equals("component")) {
-			result = this.repository.findAllComponentsPublished();
+		
+		if (request.getModel().hasAttribute("chimpumId")) {
+			Integer masterId;
+			masterId = request.getModel().getInteger("chimpumId");
+			result = this.repository.findArtifactsByChimpumId(masterId);
 			return result;
-		}else {
-			result = this.repository.findAllToolsPublished();
-			return result;
+		} else {
+			final String type = request.getModel().getString("type");
+			if(type.equals("component")) {
+				result = this.repository.findAllComponentsPublished();
+				return result;
+			}else {
+				result = this.repository.findAllToolsPublished();
+				return result;
+			}
 		}
+		
 	}
 	
 	@Override
