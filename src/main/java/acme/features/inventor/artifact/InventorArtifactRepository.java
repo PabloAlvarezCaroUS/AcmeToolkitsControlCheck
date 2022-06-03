@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.entities.artifacts.Artifact;
 import acme.entities.artifacts.Quantity;
-import acme.entities.chimpum.Chimpum;
+import acme.entities.lustar.Lustar;
 import acme.framework.repositories.AbstractRepository;
 import acme.roles.Inventor;
 
@@ -54,9 +54,9 @@ public interface InventorArtifactRepository extends AbstractRepository{
 	@Query("select config.weakSpamTreshold from ConfigData config")
 	int findWeakSpamTreshold();
 	
-	@Query("SELECT chimpum FROM Chimpum chimpum")
-	List<Chimpum> findAllChimpums();
+	@Query("SELECT l FROM Lustar l")
+	List<Lustar> findAllLustars();
 	
-	@Query("SELECT c FROM Chimpum c WHERE c.pattern = :pattern")
-	Chimpum findChimpumByPattern(String pattern);
+	@Query("SELECT l FROM Lustar l WHERE l.pattern = :pattern")
+	Lustar findLustarByPattern(String pattern);
 }

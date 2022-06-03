@@ -1,0 +1,28 @@
+inventor.lustar.list.label.subject = Subject
+inventor.lustar.list.label.creationMoment = Creation Moment
+inventor.lustar.list.label.income = income
+
+inventor.lustar.list.button.create = Create
+inventor.lustar.form.button.create = Create
+inventor.lustar.form.button.update = Update
+inventor.lustar.form.button.delete = Delete
+
+inventor.lustar.form.label.subject = Subject
+inventor.lustar.form.label.summary = Summary
+inventor.lustar.form.label.code = Code
+inventor.lustar.form.label.creationMoment = Creation Moment
+inventor.lustar.form.label.startDate = Period start date
+inventor.lustar.form.label.finishDate = Period finish date
+inventor.lustar.form.label.income = Income
+inventor.lustar.form.label.more-info = More info
+inventor.lustar.form.label.pattern = Pattern
+
+inventor.lustar.form.button.component = See the chimpum's components
+
+inventor.lustar.form.error.startDate = The time period must start at least one month after the patronage is created
+inventor.lustar.form.error.finishDate = The time period must be at least one week long
+
+inventor.lustar.form.error.negative-budget = The budget can't be negative
+inventor.lustar.form.error.nonexistent-currency = This currency does not exist in our system
+inventor.lustar.form.error.spam = This text contains spam terms
+inventor.lustar.form.error.duplicated = This pattern is duplicated

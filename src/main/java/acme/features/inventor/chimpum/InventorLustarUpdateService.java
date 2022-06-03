@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.chimpum.Chimpum;
+import acme.entities.lustar.Lustar;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
@@ -15,55 +15,55 @@ import acme.roles.Inventor;
 import features.SpamDetector;
 
 @Service
-public class InventorChimpumUpdateService implements AbstractUpdateService<Inventor, Chimpum> {
+public class InventorLustarUpdateService implements AbstractUpdateService<Inventor, Lustar> {
 
 	// Internal state ---------------------------------------------------------
 	
 	@Autowired
-	protected InventorChimpumRepository repository;
+	protected InventorLustarRepository repository;
 		
 	// AbstractUpdateService<Inventor, Chimpum> interface ---------------------
 	
 	@Override
-	public boolean authorise(final Request<Chimpum> request) {
+	public boolean authorise(final Request<Lustar> request) {
 		assert request != null;
 		
 		return true;
 	}
 
 	@Override
-	public void bind(final Request<Chimpum> request, final Chimpum entity, final Errors errors) {
+	public void bind(final Request<Lustar> request, final Lustar entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
 		
-		request.bind(entity, errors, "title", "startDate", "finishDate", "budget", "link");
+		request.bind(entity, errors, "subject", "summary", "startDate", "finishDate", "income", "moreInfo");
 	}
 
 	@Override
-	public void unbind(final Request<Chimpum> request, final Chimpum entity, final Model model) {
+	public void unbind(final Request<Lustar> request, final Lustar entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
 		
-		request.unbind(entity, model, "title", "startDate", "finishDate", "budget", "link", "code", "creationMoment");
+		request.unbind(entity, model, "subject", "summary", "startDate", "finishDate", "income", "moreInfo", "code", "creationMoment");
 	}
 
 	@Override
-	public Chimpum findOne(final Request<Chimpum> request) {
+	public Lustar findOne(final Request<Lustar> request) {
 		assert request != null;
 		
-		Chimpum result;
+		Lustar result;
 		int id;
 		
 		id = request.getModel().getInteger("id");
-		result = this.repository.findChimpumById(id);
+		result = this.repository.findLustarById(id);
 		
 		return result;
 	}
 
 	@Override
-	public void validate(final Request<Chimpum> request, final Chimpum entity, final Errors errors) {
+	public void validate(final Request<Lustar> request, final Lustar entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
@@ -80,10 +80,16 @@ public class InventorChimpumUpdateService implements AbstractUpdateService<Inven
 		strongSpamThreshold = this.repository.findStrongSpamTreshold();
 		weakSpamThreshold = this.repository.findWeakSpamTreshold();
 		
-		if(!errors.hasErrors("title")) {
-			errors.state(request, !spamDetector.containsSpam(weakSpamTerms.split(","), weakSpamThreshold, entity.getTitle())
-				&& !spamDetector.containsSpam(strongSpamTerms.split(","), strongSpamThreshold, entity.getTitle()),
-				"title", "inventor.chimpum.form.error.spam");
+		if(!errors.hasErrors("subject")) {
+			errors.state(request, !spamDetector.containsSpam(weakSpamTerms.split(","), weakSpamThreshold, entity.getSubject())
+				&& !spamDetector.containsSpam(strongSpamTerms.split(","), strongSpamThreshold, entity.getSubject()),
+				"subject", "inventor.chimpum.form.error.spam");
+		}
+		
+		if(!errors.hasErrors("summary")) {
+			errors.state(request, !spamDetector.containsSpam(weakSpamTerms.split(","), weakSpamThreshold, entity.getSummary())
+				&& !spamDetector.containsSpam(strongSpamTerms.split(","), strongSpamThreshold, entity.getSummary()),
+				"summary", "inventor.chimpum.form.error.spam");
 		}
 		
 		if(!errors.hasErrors("startDate")) {
@@ -111,8 +117,8 @@ public class InventorChimpumUpdateService implements AbstractUpdateService<Inven
 			errors.state(request, errorState, "finishDate", "inventor.chimpum.form.error.finishDate");
 		}
 		
-		if (!errors.hasErrors("budget")) {
-			final String currency = entity.getBudget().getCurrency();
+		if (!errors.hasErrors("income")) {
+			final String currency = entity.getIncome().getCurrency();
 			final String currencyAvaliable = this.repository.acceptedCurrencies();
 			boolean acceptedCurrency = false;
 			
@@ -122,13 +128,13 @@ public class InventorChimpumUpdateService implements AbstractUpdateService<Inven
 					break;
 			}
 			
-			errors.state(request, entity.getBudget().getAmount() > 0 , "budget", "inventor.chimpum.form.error.negative-budget");
-			errors.state(request,acceptedCurrency, "budget", "inventor.chimpum.form.error.nonexistent-currency");
+			errors.state(request, entity.getIncome().getAmount() > 0 , "income", "inventor.chimpum.form.error.negative-budget");
+			errors.state(request,acceptedCurrency, "income", "inventor.chimpum.form.error.nonexistent-currency");
 		}
 	}
 
 	@Override
-	public void update(final Request<Chimpum> request, final Chimpum entity) {
+	public void update(final Request<Lustar> request, final Lustar entity) {
 		assert request != null;
 		assert entity != null;
 		

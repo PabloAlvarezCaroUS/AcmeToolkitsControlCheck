@@ -7,59 +7,57 @@ import java.util.GregorianCalendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.artifacts.Artifact;
-import acme.entities.chimpum.Chimpum;
+import acme.entities.lustar.Lustar;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractCreateService;
 import acme.roles.Inventor;
-
 import features.SpamDetector;
 
 @Service
-public class InventorChimpumCreateService implements AbstractCreateService<Inventor, Chimpum> {
+public class InventorLustarCreateService implements AbstractCreateService<Inventor, Lustar> {
 
 	// Internal state ---------------------------------------------------------
 	
 	@Autowired
-	protected InventorChimpumRepository repository;
+	protected InventorLustarRepository repository;
 		
-	// AbstractCreateService<Inventor, Chimpum> interface ---------------------
+	// AbstractCreateService<Inventor, Lustar> interface ---------------------
 	
 	@Override
-	public boolean authorise(final Request<Chimpum> request) {
+	public boolean authorise(final Request<Lustar> request) {
 		assert request != null;
 		
 		return true;
 	}
 
 	@Override
-	public void bind(final Request<Chimpum> request, final Chimpum entity, final Errors errors) {
+	public void bind(final Request<Lustar> request, final Lustar entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
 		
-		request.bind(entity, errors, "title", "pattern", "startDate", "finishDate", "budget", "link");
+		request.bind(entity, errors, "subject", "summary", "pattern", "startDate", "finishDate", "income", "moreInfo");
 	}
 
 	@Override
-	public void unbind(final Request<Chimpum> request, final Chimpum entity, final Model model) {
+	public void unbind(final Request<Lustar> request, final Lustar entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
 		
-		request.unbind(entity, model, "title", "pattern", "startDate", "finishDate", "budget", "link");
+		request.unbind(entity, model, "subject", "summary", "pattern", "startDate", "finishDate", "income", "moreInfo");
 	}
 
 	@Override
-	public Chimpum instantiate(final Request<Chimpum> request) {
+	public Lustar instantiate(final Request<Lustar> request) {
 		assert request != null;
 		
-		Chimpum result;
+		Lustar result;
 		Date creationMoment;
 		
-		result = new Chimpum();
+		result = new Lustar();
 		creationMoment = new Date(System.currentTimeMillis() - 1);
 		result.setCreationMoment(creationMoment);
 		
@@ -67,7 +65,7 @@ public class InventorChimpumCreateService implements AbstractCreateService<Inven
 	}
 
 	@Override
-	public void validate(final Request<Chimpum> request, final Chimpum entity, final Errors errors) {
+	public void validate(final Request<Lustar> request, final Lustar entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
@@ -84,17 +82,23 @@ public class InventorChimpumCreateService implements AbstractCreateService<Inven
 		strongSpamThreshold = this.repository.findStrongSpamTreshold();
 		weakSpamThreshold = this.repository.findWeakSpamTreshold();
 		
-		if(!errors.hasErrors("title")) {
-			errors.state(request, !spamDetector.containsSpam(weakSpamTerms.split(","), weakSpamThreshold, entity.getTitle())
-				&& !spamDetector.containsSpam(strongSpamTerms.split(","), strongSpamThreshold, entity.getTitle()),
-				"title", "inventor.chimpum.form.error.spam");
+		if(!errors.hasErrors("subject")) {
+			errors.state(request, !spamDetector.containsSpam(weakSpamTerms.split(","), weakSpamThreshold, entity.getSubject())
+				&& !spamDetector.containsSpam(strongSpamTerms.split(","), strongSpamThreshold, entity.getSubject()),
+				"subject", "inventor.lustar.form.error.spam");
+		}
+		
+		if(!errors.hasErrors("summary")) {
+			errors.state(request, !spamDetector.containsSpam(weakSpamTerms.split(","), weakSpamThreshold, entity.getSummary())
+				&& !spamDetector.containsSpam(strongSpamTerms.split(","), strongSpamThreshold, entity.getSummary()),
+				"summary", "inventor.lustar.form.error.spam");
 		}
 		
 		if(!errors.hasErrors("pattern")) {
-			Chimpum exists;
+			Lustar exists;
 			
-			exists = this.repository.findChimpumByPattern(entity.getPattern());
-			errors.state(request, exists == null, "pattern", "inventor.chimpum.form.error.duplicated");
+			exists = this.repository.findLustarByPattern(entity.getPattern());
+			errors.state(request, exists == null, "pattern", "inventor.lustar.form.error.duplicated");
 		}
 		
 		if(!errors.hasErrors("startDate")) {
@@ -104,7 +108,7 @@ public class InventorChimpumCreateService implements AbstractCreateService<Inven
 			calendar.add(Calendar.MONTH, 1);
 			calendar.add(Calendar.DAY_OF_MONTH, -1);
 			
-			errors.state(request, entity.getStartDate().after(calendar.getTime()), "startDate", "inventor.chimpum.form.error.startDate");
+			errors.state(request, entity.getStartDate().after(calendar.getTime()), "startDate", "inventor.lustar.form.error.startDate");
 		}
 		
 		if(!errors.hasErrors("finishDate")) {
@@ -119,11 +123,11 @@ public class InventorChimpumCreateService implements AbstractCreateService<Inven
 				errorState = entity.getFinishDate().after(calendar.getTime());
 			}
 			
-			errors.state(request, errorState, "finishDate", "inventor.chimpum.form.error.finishDate");
+			errors.state(request, errorState, "finishDate", "inventor.lustar.form.error.finishDate");
 		}
 		
-		if (!errors.hasErrors("budget")) {
-			final String currency = entity.getBudget().getCurrency();
+		if (!errors.hasErrors("income")) {
+			final String currency = entity.getIncome().getCurrency();
 			final String currencyAvaliable = this.repository.acceptedCurrencies();
 			boolean acceptedCurrency = false;
 			
@@ -132,13 +136,13 @@ public class InventorChimpumCreateService implements AbstractCreateService<Inven
 				if(acceptedCurrency)
 					break;
 			}
-			errors.state(request, entity.getBudget().getAmount() > 0 , "budget", "inventor.chimpum.form.error.negative-budget");
-			errors.state(request,acceptedCurrency, "budget", "inventor.chimpum.form.error.nonexistent-currency");
+			errors.state(request, entity.getIncome().getAmount() > 0 , "income", "inventor.lustar.form.error.negative-budget");
+			errors.state(request,acceptedCurrency, "income", "inventor.lustar.form.error.nonexistent-currency");
 		}
 	}
 
 	@Override
-	public void create(final Request<Chimpum> request, final Chimpum entity) {
+	public void create(final Request<Lustar> request, final Lustar entity) {
 		assert request != null;
 		assert entity != null;
 		

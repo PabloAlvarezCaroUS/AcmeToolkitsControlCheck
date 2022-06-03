@@ -34,10 +34,10 @@ public class AnyArtifactListPublishedService implements AbstractListService<Any,
 		
 		Collection<Artifact> result;
 		
-		if (request.getModel().hasAttribute("chimpumId")) {
+		if (request.getModel().hasAttribute("lustarId")) {
 			Integer masterId;
-			masterId = request.getModel().getInteger("chimpumId");
-			result = this.repository.findArtifactsByChimpumId(masterId);
+			masterId = request.getModel().getInteger("lustarId");
+			result = this.repository.findArtifactsByLustarId(masterId);
 			return result;
 		} else {
 			final String type = request.getModel().getString("type");

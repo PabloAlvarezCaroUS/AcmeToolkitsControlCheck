@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.artifacts.Artifact;
 import acme.entities.artifacts.ArtifactType;
-import acme.entities.chimpum.Chimpum;
+import acme.entities.lustar.Lustar;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractShowService;
@@ -60,10 +60,10 @@ public class InventorArtifactShowService implements AbstractShowService<Inventor
 		assert model != null;
 		
 		List<String> types;
-		String chimpumCode;
-		String chimpumTitle;
-		boolean hasChimpum;
-		List<Chimpum> chimpums;
+		String lustarCode;
+		String lustarSubject;
+		boolean hasLustar;
+		List<Lustar> lustars;
 		
 		request.unbind(entity, model, "name", "code", "technology", "description", "retailPrice", "artifactType", "link");
 		
@@ -72,18 +72,18 @@ public class InventorArtifactShowService implements AbstractShowService<Inventor
 			types.add(type.toString());
 		}
 		
-		hasChimpum = (entity.getChimpum() != null);
-		chimpums = this.repository.findAllChimpums();
+		hasLustar = (entity.getLustar() != null);
+		lustars = this.repository.findAllLustars();
 		
-		model.setAttribute("chimpums", chimpums);
-		model.setAttribute("hasChimpum", hasChimpum);
+		model.setAttribute("lustars", lustars);
+		model.setAttribute("hasLustar", hasLustar);
 		
-		if (hasChimpum) {
-			chimpumCode = entity.getChimpum().getCode();
-			chimpumTitle = entity.getChimpum().getTitle();
-			model.setAttribute("chimpum.code", chimpumCode);
-			model.setAttribute("chimpum.title", chimpumTitle);
-			model.setAttribute("chimpum", entity.getChimpum());
+		if (hasLustar) {
+			lustarCode = entity.getLustar().getCode();
+			lustarSubject = entity.getLustar().getSubject();
+			model.setAttribute("lustar.code", lustarCode);
+			model.setAttribute("lustar.subject", lustarSubject);
+			model.setAttribute("lustar", entity.getLustar());
 		}
 		
 		model.setAttribute("types", types);

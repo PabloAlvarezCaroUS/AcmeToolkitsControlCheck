@@ -1,0 +1,28 @@
+inventor.lustar.list.label.subject = Asunto
+inventor.lustar.list.label.creationMoment = Momento de creación
+inventor.lustar.list.label.income = Ingreso
+
+inventor.lustar.list.button.create = Crear
+inventor.lustar.form.button.create = Crear
+inventor.lustar.form.button.update = Actualizar
+inventor.lustar.form.button.delete = Borrar
+
+inventor.lustar.form.label.subject = Asunto
+inventor.lustar.form.label.subject = Resumen
+inventor.lustar.form.label.code = Código
+inventor.lustar.form.label.creationMoment = Momento de creación
+inventor.lustar.form.label.startDate = Fecha de inicio del periodo
+inventor.lustar.form.label.finishDate = Fecha de fin del periodo
+inventor.lustar.form.label.income = Ingreso
+inventor.lustar.form.label.more-info = Más información
+inventor.lustar.form.label.pattern = Patrón
+
+inventor.lustar.form.button.component = Ver los components del chimpum
+
+inventor.lustar.form.error.startDate = El periodo de tiempo debe empezar al menos un mes después de su creación
+inventor.lustar.form.error.finishDate = El periodo de tiempo debe durar al menos una semana
+
+inventor.lustar.form.error.negative-budget = El precio no puede ser negativo
+inventor.lustar.form.error.nonexistent-currency = Esta moneda no existe en nuestro sistema
+inventor.lustar.form.error.spam = Este texto contiene términos de spam
+inventor.lustar.form.error.duplicated = Este patrón está duplicado
